@@ -6,6 +6,8 @@ reads Kookee from the browser on every visit and deploys to any static host.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fkookee-dot-dev%2Fstarter-vite-react&env=KOOKEE_API_KEY&envDescription=A%20standard%20API%20key%20from%20your%20Kookee%20project%20(API%20keys%20%E2%86%92%20Create%20Key)&envLink=https%3A%2F%2Fkookee.dev%2Fhelp%2Fsdk-amp-integration%2Fstart-a-help-center-from-the-vite-react-starter&project-name=kookee-help&repository-name=kookee-help)
 
+**Live demo:** [kookee-vite.vercel.app](https://kookee-vite.vercel.app), with the content of Ledgerly, a made-up invoicing app.
+
 Built with Vite 8, React 19, [TanStack Router](https://tanstack.com/router),
 [`@kookee/sdk`](https://www.npmjs.com/package/@kookee/sdk) and
 [`@kookee/react`](https://www.npmjs.com/package/@kookee/react). No Tailwind: one stylesheet,
