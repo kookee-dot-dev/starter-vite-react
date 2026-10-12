@@ -9,8 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@kookee/react": "^1.17.0",
-    "@kookee/sdk": "^1.17.0",
+    "@kookee/react": "^1.19.0",
+    "@kookee/sdk": "^1.19.0",
     "@tanstack/react-router": "^1.170.42",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"

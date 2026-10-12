@@ -1,7 +1,8 @@
 # Kookee starter for Vite and React
 
 A single-page app for the content of a [Kookee](https://kookee.dev) project: a help center with
-search, a changelog, a blog, your pages and a read-only roadmap, plus the Kookee site widget. It
+search, a changelog, a blog, your pages, a read-only roadmap and, when you turn it on, your status
+page, plus the Kookee site widget. It
 reads Kookee from the browser on every visit and deploys to any static host.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fkookee-dot-dev%2Fstarter-vite-react&env=KOOKEE_API_KEY&envDescription=A%20standard%20API%20key%20from%20your%20Kookee%20project%20(API%20keys%20%E2%86%92%20Create%20Key)&envLink=https%3A%2F%2Fkookee.dev%2Fhelp%2Fsdk-amp-integration%2Fstart-a-help-center-from-the-vite-react-starter&project-name=kookee-help&repository-name=kookee-help)
@@ -28,6 +29,7 @@ Start](https://github.com/kookee-dot-dev/starter-tanstack-start) or
 | `/changelog`, `/changelog/{slug}` | Changelog entries; an entry with reactions |
 | `/help`, `/help/{category}`, `/help/{category}/{slug}` | Help categories and search as you type; a category's articles; an article with its table of contents and the "Was this article helpful?" vote |
 | `/roadmap` | The open feedback posts by column, read-only. `KOOKEE_ROADMAP=false` hides it |
+| `/status`, `/status/incidents/{id}` | Your status page, as Kookee hosts it: incidents, maintenance, and each component's uptime over 90 days; an incident with its updates. Times show in the visitor's zone. Off until you set `KOOKEE_STATUS=true` |
 | `/{slug}` | Your pages, such as `/about` or `/privacy` |
 
 The header carries a "What's new" badge with the latest changelog entries, and a link to your
@@ -55,6 +57,7 @@ Both are read at build time and written into the bundle. Changing one takes a re
 | --- | --- | --- | --- |
 | `KOOKEE_API_KEY` | yes | | A standard API key of your project |
 | `KOOKEE_ROADMAP` | no | `true` | `false` hides `/roadmap` and its header link |
+| `KOOKEE_STATUS` | no | `false` | `true` shows `/status` and a header link. Turn it on once the project has its status page set up |
 
 `vite.config.ts` passes only these two to the browser code, so other variables in the environment,
 such as a secret copied from another project, never reach the bundle.
@@ -98,7 +101,9 @@ shared by all their projects:
   clicked.
 
 Moving between pages keeps the header and footer, so their three reads happen once per visit, not
-once per page. The widget's settings and its AI chat are not API requests; each chat answer uses
+once per page. The status page is read again every minute while its tab is visible; status reads do
+not count against the monthly quota, and have a rate limit of their own, ten times the project's
+per-minute limit. The widget's settings and its AI chat are not API requests; each chat answer uses
 the account's AI answers. The Free plan has 100,000 requests a month and 50 AI answers, and a
 project takes at most 300 requests a minute from all visitors together.
 
@@ -119,7 +124,8 @@ change a route.
   README](https://www.npmjs.com/package/@kookee/react).
 - **Languages:** the app reads your project's default language only, so every entry has one URL.
 - **Not shown:** help articles without a category (they have no URL here), and a page whose slug
-  is `blog`, `changelog`, `help` or `roadmap`, which those routes would hide.
+  is `blog`, `changelog`, `help`, `roadmap` or `status` (even with the status page off), which those
+  routes would hide.
 
 ## Troubleshooting
 
