@@ -51,7 +51,7 @@ Without a key the app shows a short setup guide, and `npm run build` still passe
 
 ## Environment variables
 
-Both are read at build time and written into the bundle. Changing one takes a rebuild.
+All three are read at build time and written into the bundle. Changing one takes a rebuild.
 
 | Name | Required | Default | What it does |
 | --- | --- | --- | --- |
@@ -59,7 +59,7 @@ Both are read at build time and written into the bundle. Changing one takes a re
 | `KOOKEE_ROADMAP` | no | `true` | `false` hides `/roadmap` and its header link |
 | `KOOKEE_STATUS` | no | `false` | `true` shows `/status` and a header link. Turn it on once the project has its status page set up |
 
-`vite.config.ts` passes only these two to the browser code, so other variables in the environment,
+`vite.config.ts` passes only these three to the browser code, so other variables in the environment,
 such as a secret copied from another project, never reach the bundle.
 
 ## Deploy
