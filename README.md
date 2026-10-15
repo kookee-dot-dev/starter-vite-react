@@ -31,10 +31,16 @@ Start](https://github.com/kookee-dot-dev/starter-tanstack-start) or
 | `/roadmap` | The open feedback posts by column, read-only. `KOOKEE_ROADMAP=false` hides it |
 | `/status`, `/status/incidents/{id}` | Your status page, as Kookee hosts it: incidents, maintenance, and each component's uptime over 90 days; an incident with its updates. Times show in the visitor's zone. Off until you set `KOOKEE_STATUS=true` |
 | `/{slug}` | Your pages, such as `/about` or `/privacy` |
+| Every page | The newest announcement as a pill under the header. It opens a dialog with all of them, and each one in full |
 
 The header carries a "What's new" badge with the latest changelog entries, and a link to your
 hosted portal when the project has it switched on. The site widget appears once you save its
 settings in the Kookee dashboard (**Site widget → Customize**), with the tabs you chose there.
+
+Under the header floats a pill with the newest announcement. A click opens a dialog with the
+list, and a click on one shows it in full. A visitor can dismiss an announcement from the pill or
+the list, and the browser remembers it. The dialog is the starter's own, in
+`src/components/announcements.tsx`, styled in `src/site.css`.
 
 ## Quick start
 
@@ -93,14 +99,14 @@ Nothing is cached: content is read live on every visit, so a change in Kookee sh
 page load. Every read is one request against the monthly quota of the project owner's account,
 shared by all their projects:
 
-- opening the app reads the project, the newest changelog entries and your pages, for the header
-  and footer;
+- opening the app reads the project, the newest changelog entries and announcements, and your
+  pages, for the header and footer;
 - each page then reads what it shows: a list, an entry, the help categories, or the roadmap's
   columns and posts;
-- each help search, the widget's Help tab and article reader, and a reaction or helpful vote when
-  clicked.
+- each announcement opened in the dialog, each help search, the widget's Help tab and article
+  reader, and a reaction or helpful vote when clicked.
 
-Moving between pages keeps the header and footer, so their three reads happen once per visit, not
+Moving between pages keeps the header and footer, so their four reads happen once per visit, not
 once per page. The status page is read again every minute while its tab is visible; status reads do
 not count against the monthly quota, and have a rate limit of their own, ten times the project's
 per-minute limit. The widget's settings and its AI chat are not API requests; each chat answer uses

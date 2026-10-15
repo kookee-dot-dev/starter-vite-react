@@ -163,6 +163,96 @@ a {
   color: var(--site-text);
 }
 
+/* Announcements: the pill hangs under the header, however tall the header wraps, and floats over
+   the page without blocking clicks around it. It opens the dialog below. */
+
+.site-announcement {
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0.75rem 1rem 0;
+  pointer-events: none;
+}
+
+.site-announcement .kookee-announcement-pill {
+  pointer-events: auto;
+}
+
+.site-dialog {
+  width: 32rem;
+  max-width: calc(100% - 2rem);
+  max-height: min(36rem, calc(100dvh - 4rem));
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--site-border);
+  border-radius: 12px;
+  background: var(--site-surface);
+  color: var(--site-text);
+  box-shadow: 0 24px 48px rgb(0 0 0 / 0.2);
+}
+
+.site-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.site-dialog::backdrop {
+  background: rgb(15 17 21 / 0.5);
+}
+
+.site-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 3.25rem;
+  padding: 0.5rem 0.5rem 0.5rem 1.25rem;
+  border-bottom: 1px solid var(--site-border);
+}
+
+.site-dialog-header h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.site-dialog-header button {
+  padding: 0.25rem 0.6rem;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: var(--site-text-muted);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.site-dialog-header button:first-child {
+  margin-inline-start: -0.6rem;
+}
+
+.site-dialog-header button:hover {
+  background: var(--site-surface-muted);
+  color: var(--site-text);
+}
+
+.site-dialog-header .site-dialog-close {
+  font-size: 1.375rem;
+  line-height: 1;
+}
+
+.site-dialog-body {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.5rem;
+}
+
+.site-dialog-body .kookee-announcement-article {
+  padding: 0.75rem 0.75rem 1rem;
+}
+
 /* Footer */
 
 .site-footer {

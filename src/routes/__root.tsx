@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { createRootRoute, Outlet, useRouter } from '@tanstack/react-router';
-import { useChangelog, useKookee, useKookeeQuery, usePages } from '@kookee/react';
+import { useAnnouncements, useChangelog, useKookee, useKookeeQuery, usePages } from '@kookee/react';
 import { Footer } from '../components/footer';
 import { Header } from '../components/header';
 import { NotFound } from '../components/not-found';
@@ -19,6 +19,7 @@ function Root() {
   const kookee = useKookee();
   const { data: project } = useKookeeQuery((signal) => kookee.project.get(signal), 'project');
   const { data: changelog } = useChangelog({ limit: 12 });
+  const { data: announcements } = useAnnouncements({ limit: 10 });
   const { data: pages } = usePages({ limit: 20 });
 
   useEffect(() => {
@@ -44,7 +45,7 @@ function Root() {
 
   return (
     <ProjectContext value={project}>
-      <Header project={project} changelog={changelog} />
+      <Header project={project} changelog={changelog} announcements={announcements} />
       <main className="site-main">
         <Outlet />
       </main>
