@@ -25,6 +25,7 @@ Start](https://github.com/kookee-dot-dev/starter-tanstack-start) or
 | Path | What it shows |
 | --- | --- |
 | `/` | The newest posts and changelog entries, and the help categories |
+| `/`, below the help categories | Your FAQ: the FAQ items in the category `home`, in the order you set. Hidden while the category has no items |
 | `/blog`, `/blog/{slug}` | Blog posts, 12 at a time with "Load more"; a post with its table of contents and reactions |
 | `/changelog`, `/changelog/{slug}` | Changelog entries; an entry with reactions |
 | `/help`, `/help/{category}`, `/help/{category}/{slug}` | Help categories and search as you type; a category's articles; an article with its table of contents and the "Was this article helpful?" vote |

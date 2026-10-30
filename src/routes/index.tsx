@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { useBlogPosts, useChangelog, useHelpCategories } from '@kookee/react';
+import { useBlogPosts, useChangelog, useFaq, useHelpCategories } from '@kookee/react';
 import { BlogPostList, BlogPostListSkeleton } from '@kookee/react/blog';
 import { ChangelogList, ChangelogListSkeleton } from '@kookee/react/changelog';
+import { FaqList } from '@kookee/react/faq';
 import { HelpCategoryGrid, HelpCategoryGridSkeleton } from '@kookee/react/help';
 import { renderLink } from '../components/link';
 import { LoadError } from '../components/not-found';
@@ -15,6 +16,7 @@ function HomePage() {
   const posts = useBlogPosts({ limit: 3 });
   const changelog = useChangelog({ limit: 3 });
   const categories = useHelpCategories();
+  const faq = useFaq({ category: 'home', limit: 50 });
 
   if (posts.error && changelog.error && categories.error) return <LoadError />;
 
@@ -58,15 +60,22 @@ function HomePage() {
           )}
         </section>
       )}
+
+      {faq.data.length > 0 && (
+        <section className="site-section">
+          <SectionHeading title="Frequently asked questions" />
+          <FaqList items={faq.data} />
+        </section>
+      )}
     </div>
   );
 }
 
-function SectionHeading({ title, to }: { title: string; to: '/blog' | '/changelog' | '/help' }) {
+function SectionHeading({ title, to }: { title: string; to?: '/blog' | '/changelog' | '/help' }) {
   return (
     <div className="site-section-heading">
       <h2>{title}</h2>
-      <Link to={to}>View all</Link>
+      {to && <Link to={to}>View all</Link>}
     </div>
   );
 }
