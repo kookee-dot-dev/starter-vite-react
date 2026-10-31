@@ -11,7 +11,7 @@
   "dependencies": {
     "@kookee/react": "^1.22.1",
     "@kookee/sdk": "^1.22.1",
-    "@tanstack/react-router": "^1.170.42",
+    "@tanstack/react-router": "^1.170.46",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
   },
