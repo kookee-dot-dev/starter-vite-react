@@ -1,8 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useFeedbackColumns, useFeedbackPosts } from '@kookee/react';
+import { FeedbackVoteButton } from '@kookee/react/feedback/client';
 import { Roadmap, RoadmapSkeleton } from '@kookee/react/roadmap';
 import { LoadError, NotFound } from '../components/not-found';
-import { ROADMAP_ENABLED } from '../lib/env';
+import { API_KEY, ROADMAP_ENABLED } from '../lib/env';
 import { PageTitle, useProject } from '../lib/project';
 
 export const Route = createFileRoute('/roadmap')({
@@ -21,11 +22,11 @@ function RoadmapPage() {
       <PageTitle title="Roadmap" />
       <h1 className="site-title">Roadmap</h1>
       <p className="site-lead">
-        What we are working on and what is under consideration.
+        What we are working on and what is under consideration. Vote for what you want most.
         {project?.portalUrl && (
           <>
             {' '}
-            Vote and share ideas on <a href={project.portalUrl}>our portal</a>.
+            Share your own ideas on <a href={project.portalUrl}>our portal</a>.
           </>
         )}
       </p>
@@ -34,7 +35,11 @@ function RoadmapPage() {
       ) : columns.isLoading || posts.isLoading ? (
         <RoadmapSkeleton columns={openColumns} />
       ) : (
-        <Roadmap columns={openColumns} posts={posts.data} />
+        <Roadmap
+          columns={openColumns}
+          posts={posts.data}
+          renderVotes={(post) => <FeedbackVoteButton post={post} config={API_KEY ? { apiKey: API_KEY } : null} />}
+        />
       )}
     </div>
   );

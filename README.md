@@ -1,7 +1,7 @@
 # Kookee starter for Vite and React
 
 A single-page app for the content of a [Kookee](https://kookee.dev) project: a help center with
-search, a changelog, a blog, your pages, a read-only roadmap and, when you turn it on, your status
+search, a changelog, a blog, your pages, a roadmap visitors can vote on and, when you turn it on, your status
 page, plus the Kookee site widget. It
 reads Kookee from the browser on every visit and deploys to any static host.
 
@@ -29,7 +29,7 @@ Start](https://github.com/kookee-dot-dev/starter-tanstack-start) or
 | `/blog`, `/blog/{slug}` | Blog posts, 12 at a time with "Load more"; a post with its table of contents and reactions |
 | `/changelog`, `/changelog/{slug}` | Changelog entries; an entry with reactions |
 | `/help`, `/help/{category}`, `/help/{category}/{slug}` | Help categories and search as you type; a category's articles; an article with its table of contents and the "Was this article helpful?" vote |
-| `/roadmap` | The open feedback posts by column, read-only. `KOOKEE_ROADMAP=false` hides it |
+| `/roadmap` | The open feedback posts by column, with a vote button that needs no sign-in. `KOOKEE_ROADMAP=false` hides it |
 | `/status`, `/status/incidents/{id}` | Your status page, as Kookee hosts it: incidents, maintenance, and each component's uptime over 90 days; an incident with its updates. Times show in the visitor's zone. Off until you set `KOOKEE_STATUS=true` |
 | `/{slug}` | Your pages, such as `/about` or `/privacy` |
 | Every page | The newest announcement as a pill under the header. It opens a dialog with all of them, and each one in full |
@@ -84,7 +84,7 @@ Then add the production domain under **Allowed Origins**, if you have not yet.
 ## The key in the bundle
 
 The key ships in the JavaScript, so anyone can copy it from your site. With it they can read your
-published content, add reactions and helpful votes, search the help center, ask the AI assistant
+published content, add reactions, helpful votes and roadmap votes, search the help center, ask the AI assistant
 and send feedback through the widget. It cannot read drafts or change content.
 
 Once the **Allowed Origins** list holds an address, the API refuses browsers on other sites with
